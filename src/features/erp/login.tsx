@@ -1,0 +1,6 @@
+import { useState } from 'react';
+import { useNavigate } from '@tanstack/react-router';
+import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
+import { LogIn, Loader2 } from 'lucide-react';
+export function LoginForm({section='overview'}:{section?:string}) {const [error,setError]=useState('');const [busy,setBusy]=useState(false);const navigate=useNavigate();return <form className="space-y-5" onSubmit={async e=>{e.preventDefault();setBusy(true);setError('');const fields=new FormData(e.currentTarget);const {error:err}=await supabase.auth.signInWithPassword({email:String(fields.get('email')),password:String(fields.get('password'))});if(err){setError('تعذر تسجيل الدخول. تحقق من البريد وكلمة المرور.');setBusy(false);return;}await navigate({to:'/$section',params:{section}});setBusy(false);}}><label className="field">البريد الإلكتروني<input name="email" type="email" dir="ltr" placeholder="Test@test.com" required autoComplete="username"/></label><label className="field">كلمة المرور<input name="password" type="password" dir="ltr" required autoComplete="current-password"/></label>{error && <p role="alert" className="text-destructive text-sm">{error}</p>}<Button className="w-full h-11" type="submit" disabled={busy}>{busy?<Loader2 className="animate-spin"/>:<LogIn/>}تسجيل الدخول</Button></form>;}

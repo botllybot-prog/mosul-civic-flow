@@ -1,0 +1,4 @@
+import { useEffect, useRef } from 'react';
+import L from 'leaflet';
+import type { Location } from './model';
+export default function FleetMap({locations}:{locations:Location[]}) {const host=useRef<HTMLDivElement>(null); useEffect(()=>{if(!host.current)return;const map=L.map(host.current,{scrollWheelZoom:false}).setView([36.345,43.145],12);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(map);for(const loc of locations)L.marker([loc.latitude,loc.longitude]).addTo(map).bindPopup(`GPS • ${Math.round(loc.accuracy ?? 0)} m`);if(locations.length)map.fitBounds(L.latLngBounds(locations.map(l=>[l.latitude,l.longitude] as [number,number])),{maxZoom:15,padding:[40,40]});return ()=>{map.remove();};},[locations]);return <div ref={host} className="fleet-map" aria-label="خريطة مواقع الآليات في الموصل"/>;}

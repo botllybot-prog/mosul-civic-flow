@@ -1,23 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Dashboard } from '@/features/erp/dashboard';
+import { DEMO } from '@/features/erp/model';
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({meta:[{title:'بلدية الموصل | نظام الإدارة المتكامل'},{name:'description',content:'لوحة إدارة بلدية الموصل للكتب الرسمية والقطاعات والموظفين والآليات والتوقيع الإلكتروني.'},{property:'og:title',content:'بلدية الموصل | نظام الإدارة المتكامل'},{property:'og:description',content:'متابعة العمل البلدي والكتب الرسمية والقطاعات من لوحة موحدة.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),
+  component: () => <Dashboard data={DEMO} demo />,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}

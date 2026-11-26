@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+- Keep municipal sections in the authenticated dynamic section route and the home screen as a read-only sample; real records must never be fetched anonymously.
+- Store municipal records in typed-kind ERP rows, movement timestamps separately, and signatures as immutable signer-owned rows; this keeps editable records separate from the audit history.
+- Enforce director and sector-manager permissions in database policies, never in client metadata; UI permissions only mirror these restrictions.
+- Use browser geolocation only after explicit opt-in while the page remains open, and save the latest location per signed-in user; a website does not provide background mobile tracking.

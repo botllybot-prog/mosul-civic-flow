@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1795671929447,
+      "tag": "0000_municipality_erp",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795672302594,
+      "tag": "0001_book_movement_audit",
+      "breakpoints": true
+    }
+  ]
+}

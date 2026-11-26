@@ -1,0 +1,4 @@
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { Building2, ArrowRight, ShieldCheck } from 'lucide-react';
+import { LoginForm } from '@/features/erp/login';
+export const Route=createFileRoute('/auth')({head:()=>({meta:[{title:'تسجيل الدخول | بلدية الموصل'},{name:'description',content:'تسجيل الدخول الآمن إلى لوحة إدارة بلدية الموصل'},{property:'og:title',content:'تسجيل الدخول | بلدية الموصل'},{property:'og:description',content:'دخول المسؤولين إلى نظام بلدية الموصل'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary'}]}),component:()=> <main className="auth-page"><Link to="/" className="auth-back"><ArrowRight size={18}/>لوحة البلدية</Link><div className="auth-panel"><span className="auth-mark"><Building2 size={40}/></span><h1>بلدية الموصل</h1><p>نظام الإدارة المتكامل</p><h2>تسجيل الدخول</h2><LoginForm/><small><ShieldCheck size={14}/>مساحة عمل بلدية الموصل</small></div></main>});
